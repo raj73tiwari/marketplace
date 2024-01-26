@@ -8,7 +8,7 @@ from . import forms
 
 def sign_up(request):
     if request.method == 'POST':
-        form=forms.Signin_form(request.POST)
+        form=forms.SigninForm(request.POST)
         if form.is_valid():
             user=form.save()
             login(request, user)
@@ -16,11 +16,28 @@ def sign_up(request):
             messages.success(request,f'Welcome {user_name}, Account Created Successfully ! ')
             return redirect('basicapp:index')
     else:
-        form=forms.Signin_form()
+        form=forms.SigninForm()
     context={'form':form}
     return render(request,'user/signup.html',context)
 
+@login_required
 def profile(request):
-    return render(request,'user/profile_form.html')
+    return render(request,'user/profile_page.html')
+
+@login_required
+def update_profile(request):
+    if request.user.userprofile and request.method == 'POST':
+         form = forms.ProfileForm(request.POST, request.FILES, instance=request.user.userprofile)
+         if form.is_valid():
+            form.save()
+            messages.success(request,'Profile Updated Successfully !')
+            return redirect('user:profile')
+         else:
+            print(form.errors)
+            messages.error(request,'Please Enter Correct Data !')
+    else:
+        form = forms.ProfileForm(instance=request.user.userprofile)
+    context={'form':form }  
+    return render(request,'user/profile_form.html',context)
 
 

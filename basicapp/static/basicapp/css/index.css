@@ -91,8 +91,6 @@ a:hover {
   align-items: center;
 }
 .postcard .postcard__tagbox {
-  display: flex;
-  flex-flow: row wrap;
   font-size: 14px;
   margin: 20px 0 0 0;
   padding: 0;
@@ -310,3 +308,27 @@ a:hover {
    border-top: 0;
    border-bottom: 0.3em solid;
  }
+
+
+
+.postcard__preview-txt textarea {
+  height: 100%;
+  border: 1px solid #596280;
+  border-radius: 2px;
+  background: #191e2b;
+  color: #bcd0f7;
+}
+.postcard input {
+    border: 1px solid #596280;
+    border-radius: 2px;
+    background: #191e2b;
+    color: #bcd0f7;
+}
+
+
+.custom-file-upload {
+  cursor: pointer;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}

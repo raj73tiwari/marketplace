@@ -6,11 +6,11 @@
 
   {% for item in all_prods %}
   <article class="postcard dark green">
-    <a class="postcard__img_link" href="#">
+    <div class="postcard__img_link">
       <img class="postcard__img"  src="{{ item.p_image.url }}" alt="Image Title" />
-    </a>
+    </div>
     <div class="postcard__text">
-      <h1 class="postcard__title green"><a href="#">{{item.p_name}}</a></h1>
+      <h1 class="postcard__title green">{{item.p_name}}</h1>
       <div class="postcard__subtitle small"><i class="fas fa-calendar-alt me-2"></i>{{item.p_date}}</div>
       <div class="postcard__bar"></div>
       <div class="postcard__preview-txt">{{item.p_desc}}</div>
@@ -19,8 +19,7 @@
           <i class="fa-solid fa-indian-rupee-sign me-2 " style="color:#79dd09"></i>{{item.p_price}}
         </li>
         <li class="tag__item play green">
-          <!-- <a href="owner/{{ item.id }}/">Contact</a> -->
-          <a href="{% url 'basicapp:owner-info' item.id %}"><i class="fa-solid fa-phone me-2"></i>Contact</a>
+          <a href="{% url 'basicapp:owner-info' item.user.id %}"><i class="fa-solid fa-phone me-2"></i>Contact</a>
         </li>
       </ul>
     </div>

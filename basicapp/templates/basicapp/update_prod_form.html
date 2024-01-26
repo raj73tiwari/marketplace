@@ -2,23 +2,20 @@
 {% load static %}
 {% block body %}
 <div class="container py-4">
-    <h1 class="h1 text-center" id="pageHeaderTitle">Add Product</h1>
+    <h1 class="h1 text-center" id="pageHeaderTitle">Update Product</h1>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <article class="postcard dark green">
             <div class="postcard__img_link">
-                <img class="postcard__img" src="{% static 'basicapp/images/upload-img.jpg'%}" alt="Upload Image" id="up-img" />
-                <label for="id_p_image" class="custom-file-upload"></label>
+                <img class="postcard__img" src="{{ prod.p_image.url }}" alt="Upload Image" id="up-img" />
+                <label for="id_p_image" class="custom-file-upload "></label>
                 <input type="file" name="p_image" accept="image/*" id="id_p_image" onchange="fileUpload(event)" style="display: none;">
             </div>
-            <div class="postcard__text" style="padding: 2rem;">
+            <div class="postcard__text" >
                 <h1 class="postcard__title green">{{form.p_name}}</a></h1>
                 <div class="postcard__bar"></div>
                 <div class="postcard__preview-txt">{{form.p_desc}}</div>
-                <!-- <div class="postcard__preview-txt upload">
-                    <label for="id_p_image">Upload Image</label>
-                    <input type="file" name="p_image" accept="image/*" id="id_p_image" onchange="fileUpload(event)">
-                </div> -->
+                
                     
                 <ul class="postcard__tagbox">
                     <li class="tag__item ">
@@ -28,7 +25,7 @@
                     <li class="tag__item play green ms-2">
                         <!-- <a href="owner/{{ item.id }}/">Contact</a> -->
                         <button type="submit" class="mt-1" style="background: none;border: none;outline: none;box-shadow: none;color: inherit;">
-                            <i class="fa-solid fa-square-plus me-2"></i>Add
+                            <i class="fa-solid fa-pen-to-square me-2"></i>Update
                         </button>
                     </li>
                 </ul>

@@ -1,7 +1,7 @@
 {% extends 'basicapp/base.html' %} {% load static %} {% block body %}
 <link rel="stylesheet" type="text/css" href="{% static 'user/css/profile.css' %}" />
 <div class="container py-4">
-  <h1 class="h1 text-center" id="pageHeaderTitle">My Profile</h1>
+  <h1 class="h1 text-center" id="pageHeaderTitle">{{owner.username}}'s Profile</h1>
     <div class="row gutters">
       <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12 mb-3">
         <div class="card h-100">
@@ -9,14 +9,14 @@
             <div class="account-settings">
               <div class="user-profile">
                 <div class="user-avatar">
-                    <img src="{{user.userprofile.profile_pic.url}}" alt="profile pic" id="up-pic" />
+                    <img src="{{owner.userprofile.profile_pic.url}}" alt="profile pic" id="up-pic" />
                 </div>
-                <h5 class="user-name">{{user.username}}</h5>
-                <h6 class="user-email">{{user.email}}</h6>
+                <h5 class="user-name">{{owner.username}}</h5>
+                <h6 class="user-email">{{owner.email}}</h6>
               </div>
               <div class="about">
                 <h5 class="mb-2 text-primary">About</h5>
-                <div class="form-group" style="padding: 0; margin:0">{{user.userprofile.about}}</div>
+                <div class="form-group" style="padding: 0; margin:0">{{owner.userprofile.about}}</div>
               </div>
             </div>
           </div>
@@ -31,12 +31,12 @@
               </div>
               <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                 <div class="form-group">
-                  Full Name : &nbsp; {{user.userprofile.name}}
+                  Full Name : &nbsp; {{owner.userprofile.name}}
                 </div>
               </div>
               <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                 <div class="form-group">
-                  Contact :&nbsp;{{user.userprofile.phone}}
+                  Contact :&nbsp;{{owner.userprofile.phone}}
                 </div>
               </div>
             </div>
@@ -46,14 +46,7 @@
               </div>
               <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                 <div class="form-group">
-                  {{user.userprofile.address}}
-                </div>
-              </div>
-            </div>
-            <div class="row gutters mt-4">
-              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                <div class="text-right">
-                  <a class="btn btn-primary mt-3" href="{% url 'user:update-profile' %}"><i class="fa-solid fa-pen-to-square me-2"></i>Update Profile</a>
+                  {{owner.userprofile.address}}
                 </div>
               </div>
             </div>
@@ -61,20 +54,8 @@
         </div>
       </div>
     </div>
-  </form>
 </div>
 
-<script>
-  const fileUpload = (event) => {
-      const files = event.target.files;
-      const filesLength = files.length;
-      if (filesLength > 0) {
-        const imageSrc = URL.createObjectURL(files[0]);
-        const imagePreviewElement = document.querySelector("#up-pic");
-        imagePreviewElement.src = imageSrc;
-        imagePreviewElement.style.display = "block";
-      }
-    };
-</script>
+
 
 {% endblock %}

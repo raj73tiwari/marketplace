@@ -1,0 +1,34 @@
+{% extends 'basicapp/base.html' %} {% block body %}
+
+<div class="container py-4">
+  <h1 class="h1 text-center" id="pageHeaderTitle">My Products</h1>
+  {% if my_prods|length == 0 %}
+    <p class="text-center"> No products to show !  </p>
+  {% endif %}
+  {% for item in my_prods %}
+  <article class="postcard dark green">
+    <div class="postcard__img_link" >
+      <img class="postcard__img" src="{{ item.p_image.url }}" alt="Image Title" />
+    </div>
+    <div class="postcard__text">
+      <h1 class="postcard__title green">{{item.p_name}}</h1>
+      <div class="postcard__subtitle small"><i class="fas fa-calendar-alt me-2"></i>{{item.p_date}}</div>
+      <div class="postcard__bar"></div>
+      <div class="postcard__preview-txt">{{item.p_desc}}</div>
+      <ul class="postcard__tagbox">
+        <li class="tag__item"><i class="fa-solid fa-indian-rupee-sign me-2" style="color: #79dd09"></i>{{item.p_price}}</li>
+        <li class="tag__item play blue">
+          <!-- <a href="owner/{{ item.id }}/">Contact</a> -->
+          <a href="{% url 'basicapp:update-prod' item.id %}"><i class="fa-solid fa-pen-to-square me-2"></i>Update</a>
+        </li>
+        <li class="tag__item play red">
+          <!-- <a href="owner/{{ item.id }}/">Contact</a> -->
+          <a href="{% url 'basicapp:del-prod' item.id %}"><i class="fa-solid fa-trash me-2"></i>Delete</a>
+        </li>
+      </ul>
+    </div>
+  </article>
+  {% endfor %}
+</div>
+
+{% endblock %}
